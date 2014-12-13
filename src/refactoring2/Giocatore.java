@@ -3,13 +3,7 @@ package refactoring2;
 public class Giocatore {
 
     int punteggio;
-    public int getPunteggio() {
-        return punteggio;
-    }
     String nome;
-    public String getNome() {
-        return nome;
-    }
 
     public void vinciPalla() {
         this.punteggio = this.punteggio + 1;

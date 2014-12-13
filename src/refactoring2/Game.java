@@ -4,8 +4,8 @@ package refactoring2;
 
 public class Game {
 
-    private Giocatore player1;
-    private Giocatore player2;
+    Giocatore player1;
+    Giocatore player2;
 
     public Game(Giocatore player1, Giocatore player2) {
         this.player1 = player1;
@@ -13,21 +13,29 @@ public class Game {
     }
 
     public String getPunteggio() {
-        if (player1.getPunteggio() >= 3 && player2.getPunteggio() >= 3) {
-            if (Math.abs(player2.getPunteggio() - player1.getPunteggio()) >= 2) {
-                return getGiocatoreInVantaggio().getNome() + " vince";
-            } else if (player1.getPunteggio() == player2.getPunteggio()) {
+        if (player1.punteggio >= 3 && player2.punteggio >= 3) {
+            if (Math.abs(player2.punteggio - player1.punteggio) >= 2) {
+                if (player1.punteggio > player2.punteggio)
+                return  player1.nome+" vince";
+                if (player1.punteggio < player2.punteggio)
+                return player2.nome+ " vince ";
+                
+            } else if (player1.punteggio == player2.punteggio) {
                 return "parità";
             } else {
-                return "vantaggio " + getGiocatoreInVantaggio().getNome();
+                if (player1.punteggio > player2.punteggio)
+                return "vantaggio " + player1.nome;
+                if (player1.punteggio < player2.punteggio)
+                return "vantaggio " + player2.nome;
             }
         } else {
-            return player1.getDescrizionePunteggi() + ", " + player2.getDescrizionePunteggi();
+            String puntiG1,puntiG2;
+            puntiG1=player1.getDescrizionePunteggi();
+            puntiG2=player2.getDescrizionePunteggi();
+            return puntiG1 + ", " + puntiG2;
         }
+        return "Errore";
     }
 
-    public Giocatore getGiocatoreInVantaggio() {
-        return (player1.getPunteggio() > player2.getPunteggio()) ? player1 : player2;
-    }
 
 }

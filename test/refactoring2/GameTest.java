@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package refactoring2;
 
 import static org.junit.Assert.*;
@@ -22,69 +16,69 @@ Original code by Victor Farcic, https://github.com/vfarcic
 */
 public class GameTest {
 
-    Giocatore pippo;
-    Giocatore pluto;
+    G pippo;
+    G pluto;
     Game game;
 
     @Before
     public void perTuttiITest() {
-        pippo = new Giocatore("Pippo");
-        pluto = new Giocatore("Pluto");
+        pippo = new G("Pippo");
+        pluto = new G("Pluto");
         game = new Game(pippo, pluto);
     }
 
     @Test
-    public void zeroDeveEssereLaDescrzionePerIlPunteggio0() {
+    public void zeroDeveEssereLaDescrizionePerIlPunteggio0() {
         Game game = new Game(pippo, pluto);
-        assertEquals(game.getPunteggio(), "zero, zero");
+        assertEquals(game.P(), "zero, zero");
     }
 
     @Test
     public void quindiciDeveEssereIlDescrittorePerIlPunteggio1() {
-        pluto.vinciPalla();
-        assertEquals(game.getPunteggio(), "zero, quindici");
+        pluto.VINC();
+        assertEquals(game.P(), "zero, quindici");
     }
 
     @Test
     public void trentaDeveEssereIlDescrittorePerIlPunteggio2() {
-        pippo.vinciPalla();
-        pippo.vinciPalla();
-        pluto.vinciPalla();
-        assertEquals(game.getPunteggio(), "trenta, quindici");
+        pippo.VINC();
+        pippo.VINC();
+        pluto.VINC();
+        assertEquals(game.P(), "trenta, quindici");
     }
 
     @Test
     public void quarantaSDeveEssereIlDescrittorePerIlPunteggio3() {
-        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
-        assertEquals(game.getPunteggio(), "quaranta, zero");
+        pippo.VINC();pippo.VINC();pippo.VINC();
+        assertEquals(game.P(), "quaranta, zero");
     }
 
     @Test
     public void vantaggioDeveEssereIlDescrittorePerIlPunteggioQuandoEntrmbiHannoFatto3PuntiEUnGiocatoreHaUnPuntoDiVantaggio() {
-        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
-        pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();
-        assertEquals(game.getPunteggio(), "vantaggio Pluto");
+        pippo.VINC();pippo.VINC();pippo.VINC();
+        pluto.VINC();pluto.VINC();pluto.VINC();pluto.VINC();
+        assertEquals(game.P(), "vantaggio Pluto");
     }
 
     @Test
     public void paritàDeveEssereIlDescrittorePerIlPunteggioQuandoEntrmbiHannoFatto3PuntiEIPunteggiSonoUguali() {
-        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
-        pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();
-        assertEquals(game.getPunteggio(), "parità");
-        pippo.vinciPalla();
-        assertFalse(game.getPunteggio().equals("parità"));
-        pluto.vinciPalla();
-        assertEquals(game.getPunteggio(), "parità");
+        pippo.VINC();pippo.VINC();pippo.VINC();
+        pluto.VINC();pluto.VINC();pluto.VINC();
+        assertEquals(game.P(), "parità");
+        pippo.VINC();
+        assertFalse(game.P().equals("parità"));
+        pluto.VINC();
+        assertEquals(game.P(), "parità");
     }
 
     @Test
     public void ilGameDeveEssereVintoDalPrimoGiocatoreCheAbbiAlmenoQuattroPuntiEDuePuntiDiVantaggio() {
-        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
-        pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();
-        assertFalse(game.getPunteggio().equals("Pippo vince"));
-        assertFalse(game.getPunteggio().equals("Pluto vince"));
-        pippo.vinciPalla();
-        assertEquals(game.getPunteggio(), "Pippo vince");
+        pippo.VINC();pippo.VINC();pippo.VINC();pippo.VINC();
+        pluto.VINC();pluto.VINC();pluto.VINC();
+        assertFalse(game.P().equals("Pippo vince"));
+        assertFalse(game.P().equals("Pluto vince"));
+        pippo.VINC();
+        assertEquals(game.P(), "Pippo vince");
     }
 
 }

@@ -1,15 +1,8 @@
 package refactoring2;
 
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-
 public class Giocatore {
 
-    public static final List<String> listaPunteggi = Arrays.asList("zero", "quindici", "trenta", "quaranta");
-
-    private int punteggio;
+    int punteggio;
     public int getPunteggio() {
         return punteggio;
     }
@@ -27,7 +20,11 @@ public class Giocatore {
     }
 
     public String getDescrizionePunteggi(){
-        return listaPunteggi.get(punteggio);
+        if (punteggio==0) return "zero";
+        if (punteggio==1) return "quindici";
+        if (punteggio==2) return "trenta";
+        return "quaranta";
+        
     }
 
 }

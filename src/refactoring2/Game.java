@@ -1,41 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package refactoring2;
 
-/**
- *
- * @author piffy
- */
+
 public class Game {
 
-    private Player player1;
-    private Player player2;
+    private Giocatore player1;
+    private Giocatore player2;
 
-    public Game(Player player1, Player player2) {
+    public Game(Giocatore player1, Giocatore player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
 
-    public String getScore() {
-        if (player1.getScore() >= 3 && player2.getScore() >= 3) {
-            if (Math.abs(player2.getScore() - player1.getScore()) >= 2) {
-                return getLeadPlayer().getName() + " won";
-            } else if (player1.getScore() == player2.getScore()) {
-                return "deuce";
+    public String getPunteggio() {
+        if (player1.getPunteggio() >= 3 && player2.getPunteggio() >= 3) {
+            if (Math.abs(player2.getPunteggio() - player1.getPunteggio()) >= 2) {
+                return getGiocatoreInVantaggio().getNome() + " vince";
+            } else if (player1.getPunteggio() == player2.getPunteggio()) {
+                return "parità";
             } else {
-                return "advantage " + getLeadPlayer().getName();
+                return "vantaggio " + getGiocatoreInVantaggio().getNome();
             }
         } else {
-            return player1.getScoreDescription() + ", " + player2.getScoreDescription();
+            return player1.getDescrizionePunteggi() + ", " + player2.getDescrizionePunteggi();
         }
     }
 
-    public Player getLeadPlayer() {
-        return (player1.getScore() > player2.getScore()) ? player1 : player2;
+    public Giocatore getGiocatoreInVantaggio() {
+        return (player1.getPunteggio() > player2.getPunteggio()) ? player1 : player2;
     }
 
 }

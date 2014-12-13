@@ -13,78 +13,78 @@ import org.junit.Test;
 /*
 Original code by Victor Farcic, https://github.com/vfarcic
 
-**Rules:**
+**Regole:**
 
-* Scores from zero to three points are described as "love", "fifteen", "thirty", and "forty" respectively.
-* If at least three points have been scored by each side and a player has one more point than his opponent, the score of the game is "advantage" for the player in the lead.
-* If at least three points have been scored by each player, and the scores are equal, the score is "deuce".
-* A game is won by the first player to have won at least four points in total and at least two points more than the opponent.
+* I punteggi da 0 a 3 punti sono descritti come "zero", "quindici", "trenta", e "quaranta" rispettivamente.
+* Se entrambi hanno fatto almeno tre punti, e un giocatore ha un punto di vantaggio, il punteggio è "vantaggio" per un giocatore.
+* Se entrambi hanno fatto almeno tre punti e hanno lo stesso punteggio, il risultato è "parità".
+* Un game è vinto dal primo giocatre che ha almeno quattro punti e due punti di vantaggio.
 */
 public class GameTest {
 
-    Player victor;
-    Player sarah;
+    Giocatore pippo;
+    Giocatore pluto;
     Game game;
 
     @Before
-    public void beforeGameTest() {
-        victor = new Player("Victor");
-        sarah = new Player("Sarah");
-        game = new Game(victor, sarah);
+    public void perTuttiITest() {
+        pippo = new Giocatore("Pippo");
+        pluto = new Giocatore("Pluto");
+        game = new Game(pippo, pluto);
     }
 
     @Test
-    public void loveShouldBeDescriptionForScore0() {
-        Game game = new Game(victor, sarah);
-        assertEquals(game.getScore(), "love, love");
+    public void zeroDeveEssereLaDescrzionePerIlPunteggio0() {
+        Game game = new Game(pippo, pluto);
+        assertEquals(game.getPunteggio(), "zero, zero");
     }
 
     @Test
-    public void fifteenShouldBeDescriptionForScore1() {
-        sarah.winBall();
-        assertEquals(game.getScore(), "love, fifteen");
+    public void quindiciDeveEssereIlDescrittorePerIlPunteggio1() {
+        pluto.vinciPalla();
+        assertEquals(game.getPunteggio(), "zero, quindici");
     }
 
     @Test
-    public void thirtyShouldBeDescriptionForScore2() {
-        victor.winBall();
-        victor.winBall();
-        sarah.winBall();
-        assertEquals(game.getScore(), "thirty, fifteen");
+    public void trentaDeveEssereIlDescrittorePerIlPunteggio2() {
+        pippo.vinciPalla();
+        pippo.vinciPalla();
+        pluto.vinciPalla();
+        assertEquals(game.getPunteggio(), "trenta, quindici");
     }
 
     @Test
-    public void fortyShouldBeDescriptionForScore3() {
-        victor.winBall();victor.winBall();victor.winBall();
-        assertEquals(game.getScore(), "forty, love");
+    public void quarantaSDeveEssereIlDescrittorePerIlPunteggio3() {
+        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
+        assertEquals(game.getPunteggio(), "quaranta, zero");
     }
 
     @Test
-    public void advantageShouldBeDescriptionWhenLeastThreePointsHaveNeenScoredByEachSideAndPlayerHasOnePointMoreThanHisOpponent() {
-        victor.winBall();victor.winBall();victor.winBall();
-        sarah.winBall();sarah.winBall();sarah.winBall();sarah.winBall();
-        assertEquals(game.getScore(), "advantage Sarah");
+    public void vantaggioDeveEssereIlDescrittorePerIlPunteggioQuandoEntrmbiHannoFatto3PuntiEUnGiocatoreHaUnPuntoDiVantaggio() {
+        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
+        pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();
+        assertEquals(game.getPunteggio(), "vantaggio Pluto");
     }
 
     @Test
-    public void deuceShouldBeDescriptionWhenAtLeastThreePointsHaveBeenScoredByEachPlayerAndTheScoresAreEqual() {
-        victor.winBall();victor.winBall();victor.winBall();
-        sarah.winBall();sarah.winBall();sarah.winBall();
-        assertEquals(game.getScore(), "deuce");
-        victor.winBall();
-        assertFalse(game.getScore().equals("deuce"));
-        sarah.winBall();
-        assertEquals(game.getScore(), "deuce");
+    public void paritàDeveEssereIlDescrittorePerIlPunteggioQuandoEntrmbiHannoFatto3PuntiEIPunteggiSonoUguali() {
+        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
+        pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();
+        assertEquals(game.getPunteggio(), "parità");
+        pippo.vinciPalla();
+        assertFalse(game.getPunteggio().equals("parità"));
+        pluto.vinciPalla();
+        assertEquals(game.getPunteggio(), "parità");
     }
 
     @Test
-    public void gameShouldBeWonByTheFirstPlayerToHaveWonAtLeastFourPointsInTotalAndWithAtLeastTwoPointsMoreThanTheOpponent() {
-        victor.winBall();victor.winBall();victor.winBall();victor.winBall();
-        sarah.winBall();sarah.winBall();sarah.winBall();
-        assertFalse(game.getScore().equals("Victor won"));
-        assertFalse(game.getScore().equals("Sarah won"));
-        victor.winBall();
-        assertEquals(game.getScore(), "Victor won");
+    public void ilGameDeveEssereVintoDalPrimoGiocatoreCheAbbiAlmenoQuattroPuntiEDuePuntiDiVantaggio() {
+        pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();pippo.vinciPalla();
+        pluto.vinciPalla();pluto.vinciPalla();pluto.vinciPalla();
+        assertFalse(game.getPunteggio().equals("Pippo vince"));
+        assertFalse(game.getPunteggio().equals("Pluto vince"));
+        pippo.vinciPalla();
+        assertEquals(game.getPunteggio(), "Pippo vince");
     }
 
 }

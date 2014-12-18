@@ -35,49 +35,49 @@ public class GameTest {
 
     @Test
     public void quindiciDeveEssereIlDescrittorePerIlPunteggio1() {
-        pluto.VINC();
+        game.VINC(2);
         assertEquals(game.P(), "zero, quindici");
     }
 
     @Test
     public void trentaDeveEssereIlDescrittorePerIlPunteggio2() {
-        pippo.VINC();
-        pippo.VINC();
-        pluto.VINC();
+        game.VINC(1);
+        game.VINC(2);
+        game.VINC(1);
         assertEquals(game.P(), "trenta, quindici");
     }
 
     @Test
     public void quarantaSDeveEssereIlDescrittorePerIlPunteggio3() {
-        pippo.VINC();pippo.VINC();pippo.VINC();
+        game.VINC(1);game.VINC(1);game.VINC(1);
         assertEquals(game.P(), "quaranta, zero");
     }
 
     @Test
     public void vantaggioDeveEssereIlDescrittorePerIlPunteggioQuandoEntrmbiHannoFatto3PuntiEUnGiocatoreHaUnPuntoDiVantaggio() {
-        pippo.VINC();pippo.VINC();pippo.VINC();
-        pluto.VINC();pluto.VINC();pluto.VINC();pluto.VINC();
+        game.VINC(1);game.VINC(1);game.VINC(1);
+        game.VINC(2);game.VINC(2);game.VINC(2);game.VINC(2);
         assertEquals(game.P(), "vantaggio Pluto");
     }
 
     @Test
     public void paritàDeveEssereIlDescrittorePerIlPunteggioQuandoEntrmbiHannoFatto3PuntiEIPunteggiSonoUguali() {
-        pippo.VINC();pippo.VINC();pippo.VINC();
-        pluto.VINC();pluto.VINC();pluto.VINC();
+        game.VINC(1);game.VINC(1);game.VINC(1);
+        game.VINC(2);game.VINC(2);game.VINC(2);
         assertEquals(game.P(), "parità");
-        pippo.VINC();
+        game.VINC(1);
         assertFalse(game.P().equals("parità"));
-        pluto.VINC();
+        game.VINC(2);
         assertEquals(game.P(), "parità");
     }
 
     @Test
     public void ilGameDeveEssereVintoDalPrimoGiocatoreCheAbbiAlmenoQuattroPuntiEDuePuntiDiVantaggio() {
-        pippo.VINC();pippo.VINC();pippo.VINC();pippo.VINC();
-        pluto.VINC();pluto.VINC();pluto.VINC();
+        game.VINC(1);game.VINC(1);game.VINC(1);game.VINC(1);
+        game.VINC(2);game.VINC(2);game.VINC(2);
         assertFalse(game.P().equals("Pippo vince"));
         assertFalse(game.P().equals("Pluto vince"));
-        pippo.VINC();
+        game.VINC(1);
         assertEquals(game.P(), "Pippo vince");
     }
 

@@ -7,9 +7,9 @@ public class Game {
     private Giocatore player1;
     private Giocatore player2;
 
-    public Game(Giocatore player1, Giocatore player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Game(String player1, String player2) {
+        this.player1 = new Giocatore(player1);
+        this.player2 = new Giocatore(player2);
     }
 
     public String getPunteggio() {
@@ -28,6 +28,14 @@ public class Game {
 
     public Giocatore getGiocatoreInVantaggio() {
         return (player1.getPunteggio() > player2.getPunteggio()) ? player1 : player2;
+    }
+
+    void puntoPer(String nomeGiocatore) {
+        if (nomeGiocatore.equalsIgnoreCase(player1.getNome()))
+            player1.vinciPalla();
+        if (nomeGiocatore.equalsIgnoreCase(player2.getNome()))
+            player2.vinciPalla();
+        return;
     }
 
 }

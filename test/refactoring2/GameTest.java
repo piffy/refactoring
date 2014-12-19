@@ -16,20 +16,15 @@ Original code by Victor Farcic, https://github.com/vfarcic
 */
 public class GameTest {
 
-    G pippo;
-    G pluto;
     Game game;
 
     @Before
     public void perTuttiITest() {
-        pippo = new G("Pippo");
-        pluto = new G("Pluto");
-        game = new Game(pippo, pluto);
+        game = new Game("Pippo", "Pluto");
     }
 
     @Test
     public void zeroDeveEssereLaDescrizionePerIlPunteggio0() {
-        Game game = new Game(pippo, pluto);
         assertEquals(game.P(), "zero, zero");
     }
 

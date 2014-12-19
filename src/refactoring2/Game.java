@@ -26,9 +26,9 @@ public void VINC(int nGioc){
     int g2Punt;
     
 
-    public Game(G x, G y) {
-        this.g1Nome = x.toString();
-        this.g2Nome = y.toString();
+    public Game(String x, String y) {
+        this.g1Nome = x;
+        this.g2Nome = y;
     }
 
     public String P() {

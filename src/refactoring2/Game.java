@@ -4,15 +4,15 @@ package refactoring2;
 
 public class Game {
     
-public static String DescrPunt(int p){
+public static String Stmp(int p){
         if (p==0) return "zero";
         if (p==1) return "quindici";
         if (p==2) return "trenta";
         return "quaranta";    
 }    
 
-public void VINC(int nGioc){
-        if (nGioc==1)
+public void VINC(String nGioc){
+        if (nGioc.equals(g1Nome))
             g1Punt++;
         else
             g2Punt++;
@@ -49,8 +49,8 @@ public void VINC(int nGioc){
             }
         } else {
             String puntiG1,puntiG2;
-            puntiG1=DescrPunt(g1Punt);
-            puntiG2=DescrPunt(g2Punt);
+            puntiG1=Stmp(g1Punt);
+            puntiG2=Stmp(g2Punt);
             return puntiG1 + ", " + puntiG2;
         }
         return "Errore";
